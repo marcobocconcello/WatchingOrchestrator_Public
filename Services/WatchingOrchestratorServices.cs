@@ -11,10 +11,11 @@ namespace WatchingOrchestrator.Services{
     public class WatchingOrchestratorServices : IWatchingOrchestratorServices
     {
         public readonly WatchingDbContext _context;
-        private readonly IMapper _mapper;
-        public WatchingOrchestratorServices(IMapper mapper,WatchingDbContext context)
+        public delegate void SwitchOverInputDelegate(RequestUpdateElements elemetToUpdate, 
+                                                    Elements elementFromDB);
+
+        public WatchingOrchestratorServices(WatchingDbContext context)
         {
-            this._mapper = mapper;
             this._context = context;
         }
 
@@ -158,6 +159,31 @@ namespace WatchingOrchestrator.Services{
             return false;
         }
 
+        public List<Elements> UpdateElement(RequestUpdateElements elementToUpdate,
+                                                int idElem)
+        {
+            try{
+                Elements element =  _context.Elements
+                                .Where(element => element.ElementsId == idElem)
+                                .FirstOrDefault();
+
+                SwitchOverInputDelegate switchOverInputDelegate = SwitchOverInput;
+                switchOverInputDelegate.Invoke(elementToUpdate, element);
+
+                if(_context.SaveChanges() > 0){
+                    List<Elements> elementsListUpdate = _context.Elements
+                                                        .Where(elementupdated => elementupdated.ElementsId == element.ElementsId)
+                                                        .ToList();
+                    return elementsListUpdate;
+                }
+
+                return new List<Elements>();
+            }
+            catch(Exception ex){
+                throw new Exception($"Errore nell'update di un elemento. Message: {ex.Message}");
+            }
+        }
+
         List<ElementsDto> IWatchingOrchestratorServices.GetAllElements()
         {
             throw new NotImplementedException();
@@ -172,5 +198,46 @@ namespace WatchingOrchestrator.Services{
         {
             throw new NotImplementedException();
         }
+
+        SwitchOverInputDelegate SwitchOverInput = (RequestUpdateElements elementInRequest, 
+                                                    Elements elementFromDb) => {
+            if(elementInRequest.NewReleaseDate.HasValue){
+                elementFromDb.ReleaseDate = elementInRequest.NewReleaseDate.Value;
+            }
+
+            if(!String.IsNullOrEmpty(elementInRequest.NewTitle)){
+                elementFromDb.Title = elementInRequest.NewTitle;
+            }
+            
+            if(!String.IsNullOrEmpty(elementInRequest.NewDescription)){
+                elementFromDb.Description = elementInRequest.NewDescription;
+            }
+
+            if(!String.IsNullOrEmpty(elementInRequest.NewImmage)){
+                elementFromDb.Immage = elementInRequest.NewImmage;
+            }
+
+            if(!String.IsNullOrEmpty(elementInRequest.NewFlagPiaciuto)){
+                elementFromDb.FlagPiaciuto = elementInRequest.NewFlagPiaciuto;
+            }
+            
+            if(elementInRequest.NewContentsId.HasValue){
+                
+                if(elementInRequest.NewContentsId.Value < 0){
+                    throw new Exception("NewContentsId ha un valore negativo");
+                }
+
+                elementFromDb.ContentsId = elementInRequest.NewContentsId.Value;
+            }
+
+            if(elementInRequest.NewStatesId.HasValue){
+                
+                if(elementInRequest.NewStatesId.Value < 0){
+                    throw new Exception("NewStatesId ha un valore negativo");
+                }
+
+                elementFromDb.StatesId = elementInRequest.NewStatesId.Value;
+            }
+        };
     }
 }

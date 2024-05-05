@@ -19,6 +19,8 @@ namespace WatchingOrchestrator.Services{
         public List<ContentsDto> GetActiveContentWithDate(DateTime certainDate);
         public bool CreateElements(RequestCreateElement elementToCreate);
 
+        public List<Elements> UpdateElement(RequestUpdateElements elementToUpdate, int idElem);
+
         public bool SaveChage();
     }
 }

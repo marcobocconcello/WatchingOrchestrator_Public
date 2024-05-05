@@ -128,5 +128,32 @@ namespace WatchingOrchestrator.Controllers{
                 return new BaseResponse(500,"500",$"{ex.Message}");
             }
         }
+
+
+        [HttpPost("UpdateElement")]
+        public ResponseElements UpdateElement([FromBody] RequestUpdateElements request, [FromHeader]int idElement){
+            try{
+
+                if(request == null){
+                    throw new Exception("RequestUpdateElements is null");
+                }
+
+                List<Elements> elementsUpdated = _services.UpdateElement(request, idElement);
+
+                if(elementsUpdated == null){
+                    throw new Exception("Elements updated null");
+                }
+                
+                return new ResponseElements(
+                        _mapper.Map<List<ElementsDto>>(elementsUpdated),
+                        200,
+                        "",
+                        ""
+                );
+            }
+            catch(Exception ex){
+                return new ResponseElements(new List<ElementsDto>(),500,"500",$"{ex.Message}");
+            }
+        }
     }
 }

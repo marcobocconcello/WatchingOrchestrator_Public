@@ -81,5 +81,31 @@ namespace WatchingOrchestrator.Models{
             this.Categoria = categoria;
             this.Stato = stato;
         }
+
+        public Elements(int elementsId,
+                        DateTime startDate,
+                        DateTime endDate,
+                        DateTime updDate,
+                        DateTime realDate,
+                        string title,
+                        string description,
+                        string immage,
+                        string flagPiaciuto,
+                        int idCategoria,
+                        int idStato,
+                        Contents categoria,
+                        States stato) : base(startDate, endDate, updDate)
+        {
+            this.ElementsId = elementsId;
+            this.ReleaseDate = realDate;
+            this.Title = title;
+            this.Description = description;
+            this.Immage = immage;
+            this.FlagPiaciuto = flagPiaciuto;
+            this.StatesId = idStato;
+            this.ContentsId = idCategoria;
+            this.Categoria = categoria;
+            this.Stato = stato;
+        }
     }
 }
