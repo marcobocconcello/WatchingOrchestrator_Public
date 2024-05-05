@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XCs0+F+bTTcsWu/lyvc4WgfJYtWM8JQJicFlCvf0N59tcydenTJI8byQhLG8VwkSYwMQ8MEsCQhwsprvADxMCA==",
+  "dgSpecHash": "VluyE/7G4DkWB1O/1uBe9eemZXPacp/toPIT/xxLDnzgHgEsOW0saDjZdckB2Sqjk7VD5MpWHJErO05XFV9rXQ==",
   "success": true,
-  "projectFilePath": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj",
+  "projectFilePath": "c:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marco\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

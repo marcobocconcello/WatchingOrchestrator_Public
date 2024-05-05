@@ -18,6 +18,33 @@ namespace WatchingOrchestrator.Services{
             this._context = context;
         }
 
+        public bool CreateElements(RequestCreateElement elementInReq)
+        {
+            try{
+                Elements elementToInsert = new Elements(
+                    DateTime.Now,
+                    DateTime.MaxValue,
+                    DateTime.Now,
+                    elementInReq.ReleaseDate,
+                    elementInReq.Title,
+                    elementInReq.Description,
+                    elementInReq.Immage,
+                    elementInReq.FlagPiaciuto,
+                    elementInReq.ContentsId,
+                    elementInReq.StatesId                
+                );
+                _context.Add(elementToInsert);
+
+                if(_context.SaveChanges() > 0){
+                    return true;
+                }
+                return false;
+            }
+            catch(Exception ex){
+                throw new Exception($"Error in creating Elementa. Message: {ex.Message}");
+            }
+        }
+
         public List<Contents> GetActiveContents()
         {
             try{
@@ -52,14 +79,34 @@ namespace WatchingOrchestrator.Services{
             throw new NotImplementedException();
         }
 
-        public StatesDto GetActiveStateById(int id)
+        public List<States> GetActiveStateById(int id)
         {
-            throw new NotImplementedException();
+            try{
+                List<States> statesList = _context.States
+                                                    .Include(states => states.ElementsList)
+                                                    .Where(states => states.StatesId == id)
+                                                    .Where(elemenst => elemenst.EndDate > DateTime.Now 
+                                                    && elemenst.StatesId == id).ToList();
+
+                return statesList;
+            }
+            catch(Exception ex){
+                throw new Exception($"Errore in GetActiveContentsById. Error: {ex.Message}");
+            }
         }
 
-        public List<StatesDto> GetActiveStates()
+        public List<States> GetActiveStates()
         {
-            throw new NotImplementedException();
+            try{
+                List<States> statesList = _context.States
+                                                    .Include(states => states.ElementsList)
+                                                    .Where(elemenst => elemenst.EndDate > DateTime.Now).ToList();
+
+                return statesList;
+            }
+            catch(Exception ex){
+                throw new Exception($"Errore in GetActiveStates. Error: {ex.Message}");
+            }
         }
 
         public List<StatesDto> GetActiveStatesWithDate(DateTime certainDate)
@@ -101,6 +148,14 @@ namespace WatchingOrchestrator.Services{
                         .Where(element => element.ElementsId == elmentsId).FirstOrDefault();
 
             return element;
+        }
+
+        public bool SaveChage()
+        {
+            if(_context.SaveChanges() > 0){
+                return true;
+            }
+            return false;
         }
 
         List<ElementsDto> IWatchingOrchestratorServices.GetAllElements()

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj": {}
+    "c:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj": {}
   },
   "projects": {
-    "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj": {
+    "c:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj",
+        "projectUniqueName": "c:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj",
         "projectName": "WatchingOrchestrator",
-        "projectPath": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj",
+        "projectPath": "c:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\WatchingOrchestrator.csproj",
         "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\obj\\",
+        "outputPath": "c:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

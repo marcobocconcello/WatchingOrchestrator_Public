@@ -18,7 +18,6 @@ namespace WatchingOrchestrator.Controllers{
         
         public readonly IWatchingOrchestratorServices _services;
         public readonly IMapper _mapper;
-        
         public WatchingOrchestratorController(IMapper _mapper, IWatchingOrchestratorServices services)
         {
             this._mapper = _mapper;
@@ -56,6 +55,77 @@ namespace WatchingOrchestrator.Controllers{
                                             , 500
                                             , "500",
                                             $"{ex.Message}");
+            }
+        }
+
+        [HttpGet("ActiveStates")]
+        public ResponseSates GetStates([FromHeader] int? id){
+            try{
+                
+                if(id == null){
+                    List<States> statessList = _services.GetActiveStates();
+
+                    List<StatesDto> listdto = _mapper.Map<List<StatesDto>>(statessList);
+
+                    return new ResponseSates(
+                            _mapper.Map<List<StatesDto>>(statessList),
+                            200,
+                            "",
+                            ""
+                    );
+                }
+                else{
+                    List<States> statessList = _services.GetActiveStateById((int)id.Value);
+
+                    List<StatesDto> listdto = _mapper.Map<List<StatesDto>>(statessList);
+
+                    return new ResponseSates(
+                            _mapper.Map<List<StatesDto>>(statessList),
+                            200,
+                            "",
+                            ""
+                    );
+                }
+
+
+            }
+            catch(Exception ex){
+                return new ResponseSates(new List<StatesDto>()
+                                            , 500
+                                            , "500",
+                                            $"{ex.Message}");
+            }
+        }
+        [HttpPost("InsertElement")]
+        public BaseResponse InsertElement([FromBody] RequestCreateElement request){
+            try{
+
+                Func<RequestCreateElement, bool> IsValidRequest = (requestCreateElements) => {
+                    if(requestCreateElements == null){
+                        return false;
+                    }
+                    if(String.IsNullOrEmpty(requestCreateElements.Title)){
+                        return false;
+                    }
+                    if(String.IsNullOrEmpty(requestCreateElements.FlagPiaciuto)){
+                        return false;
+                    }
+
+                    return true;
+                };
+
+                if(!IsValidRequest(request)){
+                    throw new Exception("Request not valid");
+                }
+
+                if(_services.CreateElements(request)){
+                    return new BaseResponse(200,"",""); 
+                }
+                
+                return new BaseResponse(200,"500","Errore nel save change del db context per un elemento");
+            }
+            catch(Exception ex){
+                return new BaseResponse(500,"500",$"{ex.Message}");
             }
         }
     }
