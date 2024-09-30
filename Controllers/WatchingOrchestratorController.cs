@@ -27,21 +27,26 @@ namespace WatchingOrchestrator.Controllers{
         public ResposeContents GetContents([FromHeader] int? id){
             try{
                 
-                if(id == null){
-                    List<Contents> contentsList = _services.GetActiveContents();
+                if(!id.HasValue){
+                    List<ContentsDto> contentsDtoList = _services.GetActiveContents();
+
+                    ResposeContents resposeContents = new ResposeContents(contentsDtoList,
+                            200,
+                            "",
+                            "");
 
                     return new ResposeContents(
-                            _mapper.Map<List<ContentsDto>>(contentsList),
+                            contentsDtoList,
                             200,
                             "",
                             ""
                     );
                 }
                 else{
-                    List<Contents> content = _services.GetActiveContentsById((int)id.Value);
+                    List<ContentsDto> contentsDto = _services.GetActiveContentsById((int)id.Value);
 
                     return new ResposeContents(
-                            _mapper.Map<List<ContentsDto>>(content),
+                            contentsDto,
                             200,
                             "",
                             ""
@@ -107,8 +112,15 @@ namespace WatchingOrchestrator.Controllers{
                     if(String.IsNullOrEmpty(requestCreateElements.Title)){
                         return false;
                     }
-                    if(String.IsNullOrEmpty(requestCreateElements.FlagPiaciuto)){
-                        return false;
+
+                    if (requestCreateElements.StatesId == 1)
+                    {
+                        requestCreateElements.FlagPiaciuto = " ";
+                    }
+                    else {
+                        if (String.IsNullOrEmpty(requestCreateElements.FlagPiaciuto)){
+                            return false;
+                        }
                     }
 
                     return true;
@@ -138,14 +150,14 @@ namespace WatchingOrchestrator.Controllers{
                     throw new Exception("RequestUpdateElements is null");
                 }
 
-                List<Elements> elementsUpdated = _services.UpdateElement(request, idElement);
+                List<ElementsDto> elementsUpdated = _services.UpdateElement(request, idElement);
 
                 if(elementsUpdated == null){
                     throw new Exception("Elements updated null");
                 }
                 
                 return new ResponseElements(
-                        _mapper.Map<List<ElementsDto>>(elementsUpdated),
+                        elementsUpdated,
                         200,
                         "",
                         ""

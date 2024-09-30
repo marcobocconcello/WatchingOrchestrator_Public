@@ -13,13 +13,14 @@ namespace WatchingOrchestrator.Dto{
         {
             
         }
-        public ElementsDto(
+        public ElementsDto(int elementsId,
                         DateTime realDate,
                         string title,
                         string description,
                         string immage,
                         string flagPiaciuto)
         {
+            this.ElementsId = elementsId;  
             this.ReleaseDate = realDate;
             this.Title = title;
             this.Description = description;

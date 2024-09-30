@@ -1,22 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WatchingOrchestrator.Data;
 using WatchingOrchestrator.Dto;
 using WatchingOrchestrator.Models;
+using WatchingOrchestrator.Profiles;
 
 namespace WatchingOrchestrator.Services{
     public class WatchingOrchestratorServices : IWatchingOrchestratorServices
     {
         public readonly WatchingDbContext _context;
+        private readonly ICustomMapper customMapper;
         public delegate void SwitchOverInputDelegate(RequestUpdateElements elemetToUpdate, 
                                                     Elements elementFromDB);
 
-        public WatchingOrchestratorServices(WatchingDbContext context)
+        public WatchingOrchestratorServices(WatchingDbContext context, ICustomMapper customMapper)
         {
             this._context = context;
+            this.customMapper = customMapper;
         }
 
         public bool CreateElements(RequestCreateElement elementInReq)
@@ -46,21 +50,21 @@ namespace WatchingOrchestrator.Services{
             }
         }
 
-        public List<Contents> GetActiveContents()
+        public List<ContentsDto> GetActiveContents()
         {
             try{
                 List<Contents> contentsList = _context.Contents
                                                     .Include(contents => contents.ElementsList)
                                                     .Where(elemenst => elemenst.EndDate > DateTime.Now).ToList();
 
-                return contentsList;
+                return customMapper.fromContentsToContentsDto(contentsList);
             }
             catch(Exception ex){
                 throw new Exception($"Errore in GetActiveContents. Error: {ex.Message}");
             }
         }
 
-        public List<Contents> GetActiveContentsById(int id)
+        public List<ContentsDto> GetActiveContentsById(int id)
         {
             try{
                 List<Contents> contentsList = _context.Contents
@@ -68,7 +72,7 @@ namespace WatchingOrchestrator.Services{
                                                     .Where(contents => contents.ContentsId == id)
                                                     .Where(elemenst => elemenst.EndDate > DateTime.Now && elemenst.ContentsId == id).ToList();
 
-                return contentsList;
+                return customMapper.fromContentsToContentsDto(contentsList);
             }
             catch(Exception ex){
                 throw new Exception($"Errore in GetActiveContentsById. Error: {ex.Message}");
@@ -159,7 +163,7 @@ namespace WatchingOrchestrator.Services{
             return false;
         }
 
-        public List<Elements> UpdateElement(RequestUpdateElements elementToUpdate,
+        public List<ElementsDto> UpdateElement(RequestUpdateElements elementToUpdate,
                                                 int idElem)
         {
             try{
@@ -174,10 +178,10 @@ namespace WatchingOrchestrator.Services{
                     List<Elements> elementsListUpdate = _context.Elements
                                                         .Where(elementupdated => elementupdated.ElementsId == element.ElementsId)
                                                         .ToList();
-                    return elementsListUpdate;
+                    return customMapper.fromElementsToElementsDto(elementsListUpdate);
                 }
 
-                return new List<Elements>();
+                return new List<ElementsDto>();
             }
             catch(Exception ex){
                 throw new Exception($"Errore nell'update di un elemento. Message: {ex.Message}");
@@ -196,6 +200,12 @@ namespace WatchingOrchestrator.Services{
 
         ElementsDto IWatchingOrchestratorServices.GetElementsById(int elmentsId)
         {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetActiveFromDb<T>()
+        {
+
             throw new NotImplementedException();
         }
 

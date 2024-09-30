@@ -6,6 +6,8 @@ using WatchingOrchestrator.Models;
 
 namespace WatchingOrchestrator.Services{
     public interface IWatchingOrchestratorServices{
+        //introduzione generics
+        public List<T> GetActiveFromDb<T>();
         public List<ElementsDto> GetAllElements();
         public List<StatesDto> GetAllStates();
         public ElementsDto GetElementsById(int elmentsId);
@@ -14,12 +16,12 @@ namespace WatchingOrchestrator.Services{
         public List<States>  GetActiveStateById(int id);
         public List<StatesDto> GetActiveStatesWithDate(DateTime certainDate);
 
-        public List<Contents> GetActiveContents();
-        public List<Contents> GetActiveContentsById(int id);
+        public List<ContentsDto> GetActiveContents();
+        public List<ContentsDto> GetActiveContentsById(int id);
         public List<ContentsDto> GetActiveContentWithDate(DateTime certainDate);
         public bool CreateElements(RequestCreateElement elementToCreate);
 
-        public List<Elements> UpdateElement(RequestUpdateElements elementToUpdate, int idElem);
+        public List<ElementsDto> UpdateElement(RequestUpdateElements elementToUpdate, int idElem);
 
         public bool SaveChage();
     }

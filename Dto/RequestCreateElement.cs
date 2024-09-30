@@ -6,7 +6,7 @@ namespace WatchingOrchestrator.Dto{
         public string Title { get; set; }
         public string Description { get; set; }
         public string Immage { get; set; }
-        public string FlagPiaciuto { get; set; }
+        public string? FlagPiaciuto { get; set; }
         public int ContentsId { get; set; }
         public int StatesId { get; set; }
 

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.VisualBasic;
 using WatchingOrchestrator.Data;
+using WatchingOrchestrator.Profiles;
 using WatchingOrchestrator.Services;
 
 namespace WatchingOrchestrator
@@ -33,16 +34,20 @@ namespace WatchingOrchestrator
         {
 
             services.AddControllers();
-            services.AddDbContext<WatchingDbContext>(opt => opt.UseInMemoryDatabase("WatchDbInMemory"));
+            //services.AddDbContext<WatchingDbContext>(opt => opt.UseInMemoryDatabase("WatchDbInMemory"));
+            services.AddDbContext<WatchingDbContext>(
+                opt => opt.UseSqlServer(Configuration.GetConnectionString("WatchingDbString"))
+            );
 
             services.AddScoped<IWatchingOrchestratorServices, WatchingOrchestratorServices>();
+            services.AddScoped<ICustomMapper, CustomMapper>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WatchingOrchestrator", Version = "v1" });
             });
-            services.AddControllers().AddJsonOptions(x =>
-               x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            //services.AddControllers().AddJsonOptions(x =>
+            //   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -60,14 +65,12 @@ namespace WatchingOrchestrator
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            PrepDb.PreparePopulation(app);
+            PrepDb.PreparePopulation(app, env);
         }
     }
 }
