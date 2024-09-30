@@ -1,0 +1,25 @@
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "pa55w0rd!"
+      MSSQL_PID: Express
+    ports:
+      - "11433:1433"
+    volumes:
+      - ~/apps/mssql/data:/var/lib/mssqlql/data
+    restart: unless-stopped
+  customer:
+    image: bruco94/watching:latest
+    container_name: watching
+    ports:
+      - "8080:8080"
+    environment:
+      DatabaseServer: "ms-sql-server"
+      DatabasePort: "11433"
+      DatabaseUser: "sa"
+      DatabasePassword: "pa55w0rd!"
+      DatabaseName: "WatchingDb"
+    depends_on:
+      - ms-sql-server
