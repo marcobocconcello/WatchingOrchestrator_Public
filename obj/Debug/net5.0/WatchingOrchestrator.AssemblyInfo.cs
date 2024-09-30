@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WatchingOrchestrator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df0b432c1c9f4bde44ab848ca819127a8ae3e2c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2db6057dbfccc596a789bf0a59dc79671a6e4bd")]
 [assembly: System.Reflection.AssemblyProductAttribute("WatchingOrchestrator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WatchingOrchestrator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
