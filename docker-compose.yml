@@ -1,5 +1,6 @@
 services:
   ms-sql-server:
+    container_name: ms-sql-server
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     environment:
       ACCEPT_EULA: "Y"
@@ -7,19 +8,27 @@ services:
       MSSQL_PID: Express
     ports:
       - "11433:1433"
+    networks:
+      - sql
     volumes:
       - ~/apps/mssql/data:/var/lib/mssqlql/data
     restart: unless-stopped
-  customer:
-    image: bruco94/watching:latest
+  watching:
+    image: bruco94/watchingorchestrator:latest
     container_name: watching
     ports:
-      - "8080:8080"
+      - "8080:80"
     environment:
       DatabaseServer: "ms-sql-server"
-      DatabasePort: "11433"
+      DatabasePort: "1433"
       DatabaseUser: "sa"
       DatabasePassword: "pa55w0rd!"
       DatabaseName: "WatchingDb"
+    networks:
+      - sql
     depends_on:
       - ms-sql-server
+      
+networks:
+  sql:
+    driver: bridge

@@ -32,8 +32,8 @@ namespace WatchingOrchestrator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+            Console.WriteLine($"La stringa di connessione è : {Configuration.GetConnectionString("WatchingDbString")} ");
             //services.AddDbContext<WatchingDbContext>(opt => opt.UseInMemoryDatabase("WatchDbInMemory"));
             services.AddDbContext<WatchingDbContext>(
                 opt => opt.UseSqlServer(Configuration.GetConnectionString("WatchingDbString"))
@@ -41,6 +41,7 @@ namespace WatchingOrchestrator
 
             services.AddScoped<IWatchingOrchestratorServices, WatchingOrchestratorServices>();
             services.AddScoped<ICustomMapper, CustomMapper>();
+            services.AddLogging();
 
             services.AddSwaggerGen(c =>
             {
@@ -56,6 +57,7 @@ namespace WatchingOrchestrator
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -64,13 +66,15 @@ namespace WatchingOrchestrator
             }
 
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            PrepDb.PreparePopulation(app, env);
+
+           PrepDb.PreparePopulation(app, env);
         }
     }
 }
