@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: watching
+  labels:
+    app: watching
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: watching
+      labels:
+        app: watching
+    spec:
+      containers:
+        - name: watching
+          image: bruco94/watchingorchestrator:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: DatabaseServer
+              value: "mssql-clusterip-srv"
+            - name: DatabasePort
+              value : "1433"
+            - name: DatabaseUser
+              value: "sa"
+            - name: DatabasePassword
+              value: "pa55w0rd!"
+            - name: DatabaseName
+              value: "WatchingDb"
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: watching

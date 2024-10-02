@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: mssql
+  template:
+    metadata:
+      name: mssql
+      labels:
+        app: mssql
+    spec:
+      volumes:
+        - name: mssqldb
+          persistentVolumeClaim:
+            claimName: sql-pc-volume-claim
+      containers:
+        - name: mssql
+          image: mcr.microsoft.com/mssql/server:2017-latest
+          ports:
+            - containerPort: 1433
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /var/opt/mssql/data
+              name: mssqldb
+          envFrom:
+            - configMapRef:
+                name: sql-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: mssql

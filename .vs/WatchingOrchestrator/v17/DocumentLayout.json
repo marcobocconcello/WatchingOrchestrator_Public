@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\controllers\\watchingorchestratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:controllers\\watchingorchestratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -15,16 +23,8 @@
       "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:appsettings _local.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\controllers\\watchingorchestratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|solutionrelative:controllers\\watchingorchestratorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83555C22-53B5-4B8C-ADCF-6601D4A22844}|WatchingOrchestrator.csproj|c:\\notshare\\watchcatalog\\watchingorchestrator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,37 +38,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T10:37:03.942Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "WatchingOrchestratorController.cs",
               "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Controllers\\WatchingOrchestratorController.cs",
               "RelativeDocumentMoniker": "Controllers\\WatchingOrchestratorController.cs",
               "ToolTip": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Controllers\\WatchingOrchestratorController.cs",
               "RelativeToolTip": "Controllers\\WatchingOrchestratorController.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAIwBsAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAcwG0AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-01T10:33:48.407Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
@@ -81,20 +68,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Startup.cs",
               "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Startup.cs",
               "RelativeDocumentMoniker": "Startup.cs",
               "ToolTip": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Startup.cs",
               "RelativeToolTip": "Startup.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAqwEQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-01T09:57:31.722Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T10:37:03.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "appsettings _local.json",
               "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\appsettings _local.json",
               "RelativeDocumentMoniker": "appsettings _local.json",
@@ -107,26 +106,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-10-01T09:43:39.553Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "docker-compose.yml",
               "DocumentMoniker": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\docker-compose.yml",
               "RelativeDocumentMoniker": "docker-compose.yml",
               "ToolTip": "C:\\NotShare\\WatchCatalog\\WatchingOrchestrator\\docker-compose.yml",
               "RelativeToolTip": "docker-compose.yml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
               "WhenOpened": "2024-10-01T09:35:46.641Z",
               "EditorCaption": ""

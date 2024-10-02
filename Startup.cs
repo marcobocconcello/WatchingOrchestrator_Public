@@ -74,7 +74,7 @@ namespace WatchingOrchestrator
             });
 
 
-           PrepDb.PreparePopulation(app, env);
+           //PrepDb.PreparePopulation(app, env);
         }
     }
 }

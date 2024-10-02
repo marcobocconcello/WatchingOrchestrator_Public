@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sql
+  labels:
+    app: sql
+spec:
+  serviceName: sql
+  replicas: 1
+  template:
+    metadata:
+      name: sql
+      labels:
+        app: sql
+    spec:
+      volumes:
+        - name: sql
+          persistentVolumeClaim:
+            claimName: sql-pc-volume-claim
+      containers:
+        - name: sql
+          image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: "/var/opt/mssql"
+              name: sql
+          envFrom:
+            - configMapRef:
+                name: sql-config
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: sql
